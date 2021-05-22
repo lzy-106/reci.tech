@@ -70,7 +70,7 @@ def showResult():
 
 # @app.route("/runModel", methods=["POST"])
 def runModel(audio, script):
-    # TODO Get audio file
+    # TODO text sentiment inference
     suggested_sentiment_index = 0
     user_sentiment_index = infer_from_audio(audio)
     # user_sentiment_index = [(0, 40.5), (4, 14.9), (3, 14.9)]

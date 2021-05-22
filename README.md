@@ -35,8 +35,8 @@ AIs surely lack artistic nuances, so we may feed it lines spoken by the best act
 ## Running the app
 ### Create a virtual environment
 ``` shell
-virtualenv venv
-source venv/bin/activate
+python -m venv venv
+. venv/bin/activate
 ```
 ### Install dependencies
 ``` shell
