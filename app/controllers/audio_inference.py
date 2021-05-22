@@ -26,7 +26,7 @@ def infer_from_audio(audio):
     # loading audio input
     X, sample_rate = librosa.load(audio, res_type='kaiser_fast',
                                   sr=22050 * 2,
-                                  offset=0.5)
+                                  offset=0.5, duration=2.5)
 
     # changing data shape
     sample_rate = np.array(sample_rate)
@@ -75,4 +75,5 @@ def infer_from_audio(audio):
 
     return output
 
-print(infer_from_audio('data/audio.wav'))
+# Debug
+print(infer_from_audio('data/angry.wav'))
