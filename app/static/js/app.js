@@ -3,11 +3,11 @@
 //webkitURL is deprecated but nevertheless
 URL = window.URL || window.webkitURL;
 
-var gumStream;                      //stream from getUserMedia()
-var rec;                            //Recorder.js object
-var input;                          //MediaStreamAudioSourceNode we'll be recording
+var gumStream; //stream from getUserMedia()
+var rec; //Recorder.js object
+var input; //MediaStreamAudioSourceNode we'll be recording
 
-// shim for AudioContext when it's not avb. 
+// shim for AudioContext when it's not avb.
 var AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioContext //audio context to help us record
 
@@ -28,10 +28,13 @@ function startRecording() {
         https://addpipe.com/blog/audio-constraints-getusermedia/
     */
 
-    var constraints = { audio: true, video:false }
+    var constraints = {
+        audio: true,
+        video: false
+    }
 
     /*
-        Disable the record button until we get a success or fail from getUserMedia() 
+        Disable the record button until we get a success or fail from getUserMedia()
     */
 
     recordButton.disabled = true;
@@ -39,7 +42,7 @@ function startRecording() {
     pauseButton.disabled = false
 
     /*
-        We're using the standard promise based getUserMedia() 
+        We're using the standard promise based getUserMedia()
         https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
     */
 
@@ -54,8 +57,8 @@ function startRecording() {
         */
         audioContext = new AudioContext();
 
-        //update the format 
-        document.getElementById("formats").innerHTML="Format: 1 channel pcm @ "+audioContext.sampleRate/1000+"kHz"
+        //update the format
+        document.getElementById("formats").innerHTML = "Format: 1 channel pcm @ " + audioContext.sampleRate / 1000 + "kHz"
 
         /*  assign to gumStream for later use  */
         gumStream = stream;
@@ -63,11 +66,13 @@ function startRecording() {
         /* use the stream */
         input = audioContext.createMediaStreamSource(stream);
 
-        /* 
+        /*
             Create the Recorder object and configure to record mono sound (1 channel)
             Recording 2 channels  will double the file size
         */
-        rec = new Recorder(input,{numChannels:1})
+        rec = new Recorder(input, {
+            numChannels: 1
+        })
 
         //start the recording process
         rec.record()
@@ -82,16 +87,16 @@ function startRecording() {
     });
 }
 
-function pauseRecording(){
-    console.log("pauseButton clicked rec.recording=",rec.recording );
-    if (rec.recording){
+function pauseRecording() {
+    console.log("pauseButton clicked rec.recording=", rec.recording);
+    if (rec.recording) {
         //pause
         rec.stop();
-        pauseButton.innerHTML="Resume";
-    }else{
+        pauseButton.innerHTML = "Resume";
+    } else {
         //resume
         rec.record()
-        pauseButton.innerHTML="Pause";
+        pauseButton.innerHTML = "Pause";
     }
 }
 
@@ -104,7 +109,7 @@ function stopRecording() {
     pauseButton.disabled = true;
 
     //reset button just in case the recording is stopped while paused
-    pauseButton.innerHTML="Pause";
+    pauseButton.innerHTML = "Pause";
 
     //tell the recorder to stop the recording
     rec.stop();
@@ -134,7 +139,7 @@ function createDownloadLink(blob) {
     //save to disk link
     link.classList = ['btn btn-primary align-middle']
     link.href = url;
-    link.download = filename+".wav"; //download forces the browser to donwload the file using the  filename
+    link.download = filename + ".wav"; //download forces the browser to donwload the file using the  filename
     link.innerHTML = "Save to disk";
 
     //add the new audio element to li
@@ -149,24 +154,24 @@ function createDownloadLink(blob) {
     //upload link
     var upload = document.createElement('button');
     upload.classList = ['btn btn-primary align-middle']
-    upload.href="#";
+    upload.href = "#";
     upload.innerHTML = "Upload";
-    upload.addEventListener("click", function(event){
-          var xhr=new XMLHttpRequest();
-          var fd=new FormData();
-          fd.append("audio_data", blob, filename);
-          xhr.open("POST", "/uploadAudio", true);
+    upload.addEventListener("click", function(event) {
+        var xhr = new XMLHttpRequest();
+        var fd = new FormData();
+        fd.append("audio_data", blob, filename);
+        xhr.open("POST", "/uploadAudio", true);
 
-          xhr.onreadystatechange = function() {
-            if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-              window.location.href = '/showResult';
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+                window.location.href = '/showResult';
             }
-          }
+        }
 
-          xhr.send(fd);
+        xhr.send(fd);
     })
-    li.appendChild(document.createTextNode (" "))//add a space in between
-    li.appendChild(upload)//add the upload link to li
+    li.appendChild(document.createTextNode(" ")) //add a space in between
+    li.appendChild(upload) //add the upload link to li
 
     //add the li element to the ol
     recordingsList.appendChild(li);

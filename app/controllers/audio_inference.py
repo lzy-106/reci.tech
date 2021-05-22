@@ -74,3 +74,5 @@ def infer_from_audio(audio):
     output = list(zip(idx, string_prob_list))
 
     return output
+
+print(infer_from_audio('data/audio.wav'))
