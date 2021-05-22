@@ -126,7 +126,7 @@ function createDownloadLink(blob) {
     var url = URL.createObjectURL(blob);
     var au = document.createElement('audio');
     var li = document.createElement('li');
-    var link = document.createElement('button');
+    var link = document.createElement('a');
 
     //name of .wav file to use during upload and download (without extendion)
     var filename = new Date().toISOString();
@@ -139,6 +139,7 @@ function createDownloadLink(blob) {
     //save to disk link
     link.classList = ['btn btn-primary align-middle']
     link.href = url;
+    link.setAttribute("href", url);
     link.download = filename + ".wav"; //download forces the browser to donwload the file using the  filename
     link.innerHTML = "Save to disk";
 
