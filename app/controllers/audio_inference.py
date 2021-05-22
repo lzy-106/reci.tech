@@ -12,12 +12,10 @@ warnings.simplefilter('ignore')
 
 def infer_from_audio(audio):
     # audio should be a string
-    # sampel audio format: 'output10.wav'
-
-    # audio_duration should be a real number in seconds
+    # sample audio format: 'output10.wav'
 
     # loading pre-trained model
-    model_directory = "../model/"
+    model_directory = "app/model/"
     json_file = open(model_directory + 'model.json', 'r')
     loaded_model_json = json_file.read()
     json_file.close()
@@ -27,8 +25,6 @@ def infer_from_audio(audio):
 
     # loading audio input
     X, sample_rate = librosa.load(audio, res_type='kaiser_fast',
-                                  duration=librosa.get_duration(
-                                      filename=audio),
                                   sr=22050 * 2,
                                   offset=0.5)
 
