@@ -33,6 +33,12 @@ Tasks always take pi times more time than expected. We planned to learn and use 
 AIs surely lack artistic nuances, so we may feed it lines spoken by the best actors and show whether the user conveys similar emotional complexity like the best do.
 
 ## Running the app
+
+### Check Python version is ~3.8
+``` shell
+python --version
+cat runtime.txt
+```
 ### Create a virtual environment
 ``` shell
 python -m venv venv
