@@ -17,8 +17,8 @@ def infer_from_audio(audio):
     # audio should be a string
     # sample audio format: 'output10.wav'
 
-    if librosa.get_duration(audio) < MIN_AUDIO_DURATION:
-        raise RuntimeError("Audio is shorter than 2.5s")
+    if librosa.get_duration(filename=audio) < MIN_AUDIO_DURATION:
+        raise ValueError("Audio is shorter than 2.5s")
 
     # loading pre-trained model
     model_directory = os.path.join(app.root_path, "static", "model")

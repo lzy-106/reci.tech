@@ -1,6 +1,5 @@
 # Controller for the backend logic
-from flask import Flask, request, jsonify, render_template, redirect, \
-    url_for, session
+from flask import *
 from app import app
 from .audio_inference import infer_from_audio
 
@@ -11,6 +10,7 @@ emotion_dict = {
     3: 'happy',
     4: 'sad',
 }
+
 
 @app.route("/")
 def index():
@@ -25,8 +25,7 @@ def speak():
     """
     The page for the user to input their voice.
     """
-    data = {}
-    data['script'] = request.args.get('script')
+    data = {'script': request.args.get('script')}
     session['script'] = data['script']
     return render_template("app/speak.html", data=data)
 
@@ -49,14 +48,21 @@ def uploadAudio():
         with open('audio.wav', 'wb') as audio:
             f.save(audio)
             try:
-                suggested_sentiment, user_sentiment = runModel('audio.wav', session['script'])
-            except RuntimeError as error:
+                suggested_sentiment, user_sentiment \
+                    = runModel('audio.wav', session['script'])
+            except ValueError as error:
                 print('Error from ML model:', error)
-                Flask.flash('Flashed: ' + error.message, "error")
+                error_message = error.args[0]
+                flash('Flashed: ' + error_message, "error")
                 data = {'script': request.args.get('script')}
                 session['script'] = data['script']
                 return render_template("app/speak.html", data=data,
-                                       error='Rendered: ' + error.message)
+                                       error='Rendered: ' + error_message)
+
+                # return redirect(url_for(
+                #     "speak", script=request.args.get(
+                #     'script'), error='Rendered: ' + error_message))
+
             session['suggested_sentiment'] = suggested_sentiment
             session['user_sentiment'] = str(user_sentiment)
             if suggested_sentiment in user_sentiment.keys():
@@ -83,4 +89,3 @@ def runModel(audio, script):
     # user_sentiment_index = [(0, 40.5), (4, 14.9), (3, 14.9)]
     user_sentiment = {emotion_dict[i[0]]: i[1] for i in user_sentiment_index}
     return emotion_dict[suggested_sentiment_index], user_sentiment
-
