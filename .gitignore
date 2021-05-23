@@ -171,3 +171,6 @@ packages/react-devtools-scheduling-profiler/dist
 
 # IDEA
 .idea
+
+# audio.wav
+audio.wav
