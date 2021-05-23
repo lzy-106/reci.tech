@@ -6,6 +6,7 @@ from keras.models import model_from_json
 from scipy.special import softmax
 # from sklearn.preprocessing import LabelEncoder
 import warnings
+import os
 
 warnings.simplefilter('ignore')
 
@@ -15,7 +16,7 @@ def infer_from_audio(audio):
     # sample audio format: 'output10.wav'
 
     # loading pre-trained model
-    model_directory = "app/model/"
+    model_directory = os.getcwd() + "/app/model/"
     json_file = open(model_directory + 'model.json', 'r')
     loaded_model_json = json_file.read()
     json_file.close()
@@ -75,5 +76,5 @@ def infer_from_audio(audio):
 
     return output
 
-# # Debug
-# print(infer_from_audio('data/angry.wav'))
+# Debug
+print(infer_from_audio('data/angry.wav'))
