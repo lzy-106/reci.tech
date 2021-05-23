@@ -37,11 +37,9 @@ AIs surely lack artistic nuances, so we may feed it lines spoken by the best act
 # 23 May Update
 Continued for Mental Health Hack
 
-
-    Originality
-    Has this project been done before at hackathons in the past? How creative is their project in solving the problem at hand?
-    Adherence to Theme
-    Does the hack adhere to the event's theme? Does it implement that theme fully or just partially?
+## Completion
+1. Deployed to Heroku & an external domain (reci.tech)
+   
     Completion
     Does the hack work? Did the team achieve everything they wanted?
     Learning
