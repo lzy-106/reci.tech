@@ -1,14 +1,22 @@
-Homepage:
+# Homepage:
 
-  Talk about domain name (if we change it) (maybe this should be on results page)
-  Get into how we started figuring out Heroku and the bugs we had
-  Day one/two about figuring out heroku and the final deployments
+  1. Talk about domain name (reci.tech)
+  2. Get into how we started figuring out Heroku and the bugs we had
+  
+  1. Procfile & directory structure
+  2. requirements.txt & library conflicts
+  3. Aptfile & system libraries
+  
+# Record/Upload Page:
 
-Record/Upload Page:
+  1. Talk about how the ML model requires an audio to be > 2.5 seconds and how we added the popup, 
+  
+  start with a recording that’s too short to showcase this popup
+  
+  2. Save to disc button: <button> to <a>
+  
+  3. Talk about how our upload button didn’t work at the start, maybe Jimmy could go into this bc he fixed it as he record the correct thing
 
-  Talk about how the record limit is 2.5 seconds and how we added the popup, start with a recording that’s too short to showcase this popup
-  Talk about how our upload button didn’t work at the start, maybe Jimmy could go into this bc he fixed it as he record the correct thing
-
-Results Page:
+# Results Page:
 
   Close up the video with some final remarks
