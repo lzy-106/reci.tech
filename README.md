@@ -1,7 +1,7 @@
 # reci.tech
-[Deployment](https://recitech.herokuapp.com/)
-
 Helping actors recite scripts expressively w the help of AI
+
+## Deployed at https://recitech.herokuapp.com
 
 ![Picture of the UI](preview.png)
 
@@ -36,11 +36,13 @@ AIs surely lack artistic nuances, so we may feed it lines spoken by the best act
 
 ## Running the app
 
-### Check Python version is ~3.8
+### Ensure Python version is ~3.8
 ``` shell
-python --version
+python -V
 cat runtime.txt
 ```
+The outputs should match
+
 ### Create a virtual environment
 ``` shell
 python -m venv venv
