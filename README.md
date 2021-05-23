@@ -34,6 +34,24 @@ Tasks always take pi times more time than expected. We planned to learn and use 
 ## What's next for Reci.tech: Script Recital Aid
 AIs surely lack artistic nuances, so we may feed it lines spoken by the best actors and show whether the user conveys similar emotional complexity like the best do.
 
+# 23 May Update
+Continued for Mental Health Hack
+
+
+    Originality
+    Has this project been done before at hackathons in the past? How creative is their project in solving the problem at hand?
+    Adherence to Theme
+    Does the hack adhere to the event's theme? Does it implement that theme fully or just partially?
+    Completion
+    Does the hack work? Did the team achieve everything they wanted?
+    Learning
+    Did the team stretch themselves? Did they try to learn something new? What kind of projects have they worked on before?
+    Design
+    Did the team put thought into the user experience? How well designed is the interface?
+    Technology
+    How technically impressive was the hack? Was the technical problem the team tackled difficult? Did it use a particularly clever technique or did it use many different components? Did the technology involved make you go "Wow"?
+
+
 ## Running the app
 
 ### Ensure Python version is ~3.8
