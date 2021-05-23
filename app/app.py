@@ -48,16 +48,17 @@ def uploadLine():
 @app.route("/uploadAudio", methods=["POST"])
 def uploadAudio():
     if request.method == "POST":
-        # f = request.files['audio_data']
-        # with open('audio.wav', 'wb') as audio:
-        suggested_sentiment, user_sentiment = runModel('audio.wav', session['script'])
-        session['suggested_sentiment'] = suggested_sentiment
-        session['user_sentiment'] = str(user_sentiment)
-        if suggested_sentiment in user_sentiment.keys():
-            session['accuracy'] = str(user_sentiment[suggested_sentiment])
-        else:
-            session['accuracy'] = 'sadly, 0'
-        return redirect(url_for('showResult'))
+        f = request.files['audio_data']
+        with open('audio.wav', 'wb') as audio:
+            f.save(audio)
+            suggested_sentiment, user_sentiment = runModel('audio.wav', session['script'])
+            session['suggested_sentiment'] = suggested_sentiment
+            session['user_sentiment'] = str(user_sentiment)
+            if suggested_sentiment in user_sentiment.keys():
+                session['accuracy'] = str(user_sentiment[suggested_sentiment])
+            else:
+                session['accuracy'] = 'sadly, 0'
+            return redirect(url_for('showResult'))
 
 
 @app.route("/showResult")
