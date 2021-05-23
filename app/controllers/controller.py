@@ -52,16 +52,7 @@ def uploadAudio():
                     = runModel('audio.wav', session['script'])
             except ValueError as error:
                 print('Error from ML model:', error)
-                error_message = error.args[0]
-                flash('Flashed: ' + error_message, "error")
-                data = {'script': request.args.get('script')}
-                session['script'] = data['script']
-                return render_template("app/speak.html", data=data,
-                                       error='Rendered: ' + error_message)
-
-                # return redirect(url_for(
-                #     "speak", script=request.args.get(
-                #     'script'), error='Rendered: ' + error_message))
+                return redirect(url_for('index')), 400
 
             session['suggested_sentiment'] = suggested_sentiment
             session['user_sentiment'] = str(user_sentiment)

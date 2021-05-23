@@ -164,8 +164,12 @@ function createDownloadLink(blob) {
         xhr.open("POST", "/uploadAudio", true);
 
         xhr.onreadystatechange = function() {
-            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-                window.location.href = '/showResult';
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    window.location.href = '/showResult';
+                } else {
+                    alert('The audio needs to be at least 2.5 seconds long');
+                }
             }
         }
 
