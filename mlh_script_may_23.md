@@ -1,4 +1,4 @@
-# Homepage (deployment, Jimmy / Sophia):
+# Homepage (deployment, Jimmy / Sofia):
 
   1. Get into how we started figuring out Heroku and the bugs we had
   2. Procfile & directory structure
