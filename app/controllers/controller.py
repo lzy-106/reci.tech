@@ -1,5 +1,6 @@
 # Controller for the backend logic
-from flask import Flask, request, jsonify, render_template, redirect, url_for, session
+from flask import Flask, request, jsonify, render_template, redirect, \
+    url_for, session
 from app import app
 from .audio_inference import infer_from_audio
 
@@ -47,7 +48,15 @@ def uploadAudio():
         f = request.files['audio_data']
         with open('audio.wav', 'wb') as audio:
             f.save(audio)
-            suggested_sentiment, user_sentiment = runModel('audio.wav', session['script'])
+            try:
+                suggested_sentiment, user_sentiment = runModel('audio.wav', session['script'])
+            except RuntimeError as error:
+                print('Error from ML model:', error)
+                Flask.flash('Flashed: ' + error.message, "error")
+                data = {'script': request.args.get('script')}
+                session['script'] = data['script']
+                return render_template("app/speak.html", data=data,
+                                       error='Rendered: ' + error.message)
             session['suggested_sentiment'] = suggested_sentiment
             session['user_sentiment'] = str(user_sentiment)
             if suggested_sentiment in user_sentiment.keys():
