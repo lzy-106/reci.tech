@@ -52,6 +52,6 @@ pip install -r requirements.txt
 ```
 ### Run flask
 ``` shell
-export FLASK_APP=app/app.py
+export FLASK_APP=run.py
 python -m flask run
 ```

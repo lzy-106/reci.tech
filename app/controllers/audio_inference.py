@@ -7,6 +7,7 @@ from scipy.special import softmax
 # from sklearn.preprocessing import LabelEncoder
 import warnings
 import os
+from app import app
 
 warnings.simplefilter('ignore')
 
@@ -16,13 +17,14 @@ def infer_from_audio(audio):
     # sample audio format: 'output10.wav'
 
     # loading pre-trained model
-    model_directory = os.getcwd() + "/app/model/"
-    json_file = open(model_directory + 'model.json', 'r')
+    model_directory = os.path.join(app.root_path, "static", "model")
+
+    json_file = open(os.path.join(model_directory, 'model.json'), 'r')
     loaded_model_json = json_file.read()
     json_file.close()
     loaded_model = model_from_json(loaded_model_json)
-    loaded_model.load_weights(model_directory +
-    "Emotion_Voice_Detection_Model.h5")
+    loaded_model.load_weights(os.path.join(model_directory,
+    "Emotion_Voice_Detection_Model.h5"))
 
     # loading audio input
     X, sample_rate = librosa.load(audio, res_type='kaiser_fast',
