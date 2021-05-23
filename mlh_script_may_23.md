@@ -1,11 +1,10 @@
-# Homepage (deployment, Jimmy):
+# Homepage (deployment, Jimmy / Sophia):
 
-  1. Talk about domain name (reci.tech)
-  2. Get into how we started figuring out Heroku and the bugs we had
-  
-  1. Procfile & directory structure
-  2. requirements.txt & library conflicts
-  3. Aptfile & system libraries
+  1. Get into how we started figuring out Heroku and the bugs we had
+  2. Procfile & directory structure
+  3. requirements.txt & library conflicts
+  4. Aptfile & system libraries
+  5. Talk about domain name (reci.tech)
   
 # Record/Upload Page (Bugs, Ziyi):
 
