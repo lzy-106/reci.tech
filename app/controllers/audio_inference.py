@@ -79,4 +79,4 @@ def infer_from_audio(audio):
     return output
 
 # Debug
-print(infer_from_audio('data/angry.wav'))
+# print(infer_from_audio('data/angry.wav'))
